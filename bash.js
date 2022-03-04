@@ -6,15 +6,27 @@ const curl = require("./curl")
 process.stdout.write("prompt > ");
 process.stdin.on("data", (data) => {
   const cmd = data.toString().trim();
-  pwd(cmd);
-  ls(cmd);
-  cat(cmd);
-  curl(cmd);
+  let args = cmd.split(" "); //first arg is cat, second argument is first file, <, second file
+  if (args[0] ==="pwd"){
+    pwd(done);
+  }
+  if (args[0] ==="ls"){
+    ls(done);
+  }
+  if (args[0] ==="cat"){
+    cat(done,args[1]);
+  }
+  if (args[0] ==="curl"){
+    curl(done,args[1]);
+  }
   //process.stdout.write("you typed: " + cmd);
-  process.stdout.write("\nprompt > ")
 });
 
-function done (output) {}
+function done (output) {
+  process.stdout.write(output)
+  process.stdout.write("\nprompt > ")
+
+}
 
 
 
